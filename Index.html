@@ -5,62 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Consumer Nails</title>
 
-    <!-- Google Fonts -->
+    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-    <!-- CSS Styles -->
     <style>
+        /* ------------------------------
+           BRAND COLORS (exact from logo)
+        ------------------------------ */
         :root {
-            --grey-bg: #d9d9d9; /* matches logo background */
-            --blue: #48A9E6;
-            --green: #78C043;
-            --lavender: #C8A2D5;
-            --beige: #F5D7B4;
-            --text-dark: #222;
+            --grey-bg: #E0E0E0; 
+            --blue: #4EACE0;
+            --green: #84C748;
+            --lavender: #D3B3F5;
+            --beige: #F7DAB1;
+            --dark: #616D66;
         }
 
+        /* ------------------------------
+           GLOBAL STYLES
+        ------------------------------ */
         body {
             margin: 0;
-            font-family: 'Poppins', sans-serif;
+            font-family: "Poppins", sans-serif;
             background-color: var(--grey-bg);
-            color: var(--text-dark);
+            color: var(--dark);
+            scroll-behavior: smooth;
         }
 
         header {
             text-align: center;
             padding: 2rem 1rem;
-            background-color: white;
+            background: white;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 50;
         }
 
         header img {
-            width: 160px;
+            width: 170px;
             height: auto;
+            margin-bottom: 0.5rem;
         }
 
         h1 {
-            margin-top: 1rem;
+            margin: 0.5rem 0 1rem;
             font-weight: 600;
             color: var(--blue);
             letter-spacing: 1px;
-        }
-
-        nav {
-            margin-top: 1rem;
         }
 
         nav a {
             text-decoration: none;
             color: var(--lavender);
             font-weight: 600;
-            margin: 0 10px;
-            transition: color 0.3s;
+            margin: 0 12px;
+            transition: 0.3s;
         }
-
         nav a:hover {
             color: var(--green);
+            text-shadow: 0 0 10px var(--lavender);
         }
 
+        /* ------------------------------
+           MAIN CONTENT + SECTIONS
+        ------------------------------ */
         main {
             max-width: 1000px;
             margin: 3rem auto;
@@ -69,92 +78,154 @@
 
         section {
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-radius: 15px;
             padding: 2rem;
             margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
+            /* Fade-in animation */
+            opacity: 0;
+            animation: fadeIn 0.9s ease forwards;
+        }
+
+        /* Delay each section slightly */
+        section:nth-child(1) { animation-delay: 0s; }
+        section:nth-child(2) { animation-delay: 0.15s; }
+        section:nth-child(3) { animation-delay: 0.3s; }
+        section:nth-child(4) { animation-delay: 0.45s; }
+
+        /* Cute dotted border with sparkles (Option C) */
+        section {
+            border: 3px dotted var(--lavender);
+            position: relative;
+        }
+
+        /* Sparkles */
+        section::before,
+        section::after {
+            content: "✦";
+            position: absolute;
+            color: var(--green);
+            font-size: 20px;
+            animation: sparkle 1.8s infinite ease-in-out;
+        }
+        section::before { top: -12px; left: 15px; }
+        section::after { bottom: -12px; right: 15px; }
+
+        @keyframes sparkle {
+            0% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.3); }
+            100% { opacity: 0.4; transform: scale(1); }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
 
         section h2 {
             color: var(--lavender);
-            border-left: 5px solid var(--green);
-            padding-left: 10px;
             font-weight: 600;
+            margin-top: 0;
+            border-left: 6px solid var(--green);
+            padding-left: 10px;
         }
 
-        .btn {
-            display: inline-block;
-            background-color: var(--lavender);
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: 600;
+        /* ------------------------------
+           GALLERY
+        ------------------------------ */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .gallery img {
+            width: 100%;
+            border-radius: 12px;
+            border: 4px solid var(--lavender);
             transition: 0.3s;
         }
 
-        .btn:hover {
-            background-color: var(--blue);
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--blue);
         }
 
+        /* ------------------------------
+           FOOTER
+        ------------------------------ */
         footer {
             text-align: center;
             padding: 1.5rem;
+            color: var(--dark);
             font-size: 0.9rem;
-            color: #555;
+            margin-top: 3rem;
         }
 
         footer a {
             color: var(--blue);
             text-decoration: none;
+            font-weight: 600;
         }
-
         footer a:hover {
             color: var(--lavender);
         }
     </style>
 </head>
+
 <body>
+
     <header>
         <img src="your-logo.png" alt="Consumer Nails Logo" />
         <h1>Consumer Nails</h1>
         <nav>
             <a href="#about">About</a>
-            <a href="#products">Products</a>
+            <a href="#services">Services</a>
             <a href="#gallery">Gallery</a>
             <a href="#contact">Contact</a>
         </nav>
     </header>
 
     <main>
+
+        <!-- ABOUT -->
         <section id="about">
             <h2>About Us</h2>
-            <p>Welcome to <strong>Consumer Nails</strong> — where beauty meets creativity! We’re passionate about empowering self-expression through unique, sustainable nail art that celebrates individuality and style.</p>
+            <p>Welcome to <strong>Consumer Nails</strong> — where beauty meets creativity! We’re passionate about nail art, style, and helping every customer feel confident, cute, and uniquely themselves.</p>
         </section>
 
-        <section id="products">
-            <h2>Products & Services</h2>
-            <p>From bold nail designs to eco-friendly polish options, we offer a wide range of beauty essentials for every look. Whether you love natural tones or vibrant colors, we’ve got something for you.</p>
-            <a href="#" class="btn">Shop Now</a>
+        <!-- SERVICES -->
+        <section id="services">
+            <h2>Services</h2>
+            <p>Whether you love bold designs, soft pastels, glow effects, or minimalist elegance — we offer nail services that fit your exact style. Custom sets, freestyle art, press-ons, and more!</p>
         </section>
 
+        <!-- GALLERY -->
         <section id="gallery">
             <h2>Gallery</h2>
-            <p>See our favorite creations and nail inspiration from the Consumer Nails community!</p>
-            <!-- You can add images like this -->
-            <!-- <img src="images/nail1.jpg" alt="Nail art" class="gallery-img" /> -->
+            <p>Some of our favorite nail designs & sets!</p>
+
+            <div class="gallery">
+                <!-- Add your images like this -->
+                <!-- <img src="images/nail1.jpg" alt="Nail art"> -->
+                <!-- <img src="images/nail2.jpg" alt="Nail art"> -->
+            </div>
         </section>
 
+        <!-- CONTACT -->
         <section id="contact">
             <h2>Contact</h2>
-            <p>Have questions or want to collaborate? Reach out to us!</p>
+            <p>Have questions or want to book? Reach out anytime!</p>
             <p>Email: <a href="mailto:consumernails@example.com">consumernails@example.com</a></p>
-            <p>Follow us on <a href="#">Instagram</a> for updates and inspiration.</p>
+            <p>Follow us on <a href="#">Instagram</a> for daily inspiration 💅✨</p>
         </section>
+
     </main>
 
     <footer>
-        © 2025 Consumer Nails | Made with 💅 and care
+        © 2025 Consumer Nails | Made with 💅 and creativity
     </footer>
+
 </body>
 </html>
